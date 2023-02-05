@@ -104,6 +104,8 @@ Vagrant.configure(2) do |config|
         v.vmx["memsize"] = WORKER_MEMORY
         v.vmx["numvcpus"] = WORKER_CPUS
         if WORKER_EXTRA_DISK
+			# If the host OS is windows, the full path needs to be double encapsulated as such (or vagrant will report no such file or directory):
+			# vdiskmanager = "'C:\\Program\ Files\ (x86)\\VMware\\VMware\ Workstation\\vmware-vdiskmanager.exe'"
             # c.f. https://gist.github.com/jtopper/8588263
             vdiskmanager = '/Applications/VMware\ Fusion.app/Contents/Library/vmware-vdiskmanager'
             dir = "#{ENV['PWD']}/.kube"
